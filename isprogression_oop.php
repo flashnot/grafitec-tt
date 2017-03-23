@@ -45,8 +45,10 @@ class ProgressionChecker
             $sequence
         );
 
-        $this->q = $this->sequence[1] / $this->sequence[0];
         $this->d = $this->sequence[1] - $this->sequence[0];
+        if ($this->sequence[0] !== 0) {
+            $this->q = $this->sequence[1] / $this->sequence[0];
+        }
     }
 
     /**
@@ -55,7 +57,7 @@ class ProgressionChecker
      */
     public function isProgression()
     {
-        $isGeometric = null;
+        $isGeometric = is_null($this->q) ? false : null;
         $isArithmetic = null;
 
         for ($i = 2; $i < $this->len; $i++) {
@@ -123,8 +125,8 @@ if (empty($argv) || !is_array($argv)) {
 $input = $argv;
 array_shift($input);
 
-if (empty($input) || !is_array($argv) || count($argv) < 2) {
-    die('input sequence is incorrect. enter sequence values separated by a space.' . PHP_EOL);
+if (empty($input) || !is_array($argv) || count($argv) < 3) {
+    die('input sequence is incorrect. enter sequence values separated by a space. minimal length - 3 values' . PHP_EOL);
 }
 
 // check and output

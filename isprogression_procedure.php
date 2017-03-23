@@ -30,6 +30,10 @@ function isArithmeticProgression($sequence)
  */
 function isGeometricProgression($sequence)
 {
+    if ($sequence[0] === 0) {
+        return false;
+    }
+    
     $q = $sequence[1] / $sequence[0];
     $len = count($sequence);
 
@@ -51,8 +55,8 @@ if (empty($argv) || !is_array($argv)) {
 $input = $argv;
 array_shift($input);
 
-if (empty($input) || !is_array($argv) || count($argv) < 2) {
-    die('input sequence is incorrect. enter sequence values separated by a space.' . PHP_EOL);
+if (empty($input) || !is_array($argv) || count($argv) < 3) {
+    die('input sequence is incorrect. enter sequence values separated by a space. minimal length - 3 values' . PHP_EOL);
 }
 
 $input = array_map(
